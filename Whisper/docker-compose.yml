@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  whisper:
+    image: ${DOCKER_REGISTRY-}whisper
+    build:
+      context: .
+      dockerfile: Whisper/Dockerfile
