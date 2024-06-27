@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whisper", "Whisper\Whisper.csproj", "{826B6A70-E48E-4265-AEFC-12CEE504F05C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whisper.Server", "Whisper.Server\Whisper.Server.csproj", "{826B6A70-E48E-4265-AEFC-12CEE504F05C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whisper.Client", "Whisper.Client\Whisper.Client.csproj", "{4BABCB58-D535-44FD-BBC2-BEFDCACE2FC9}"
 EndProject
