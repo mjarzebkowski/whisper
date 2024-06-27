@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Whisper.Client.Pages;
 using Whisper.Components;
 using Whisper.Components.Account;
-using Whisper.Data;
 using Whisper.Server.Components;
 using Whisper.Server.Services;
+using Whisper.Shared.Data;
 
 namespace Whisper
 {
