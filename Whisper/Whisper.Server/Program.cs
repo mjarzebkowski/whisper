@@ -5,6 +5,8 @@ using Whisper.Client.Pages;
 using Whisper.Components;
 using Whisper.Components.Account;
 using Whisper.Data;
+using Whisper.Server.Components;
+using Whisper.Server.Services;
 
 namespace Whisper
 {
@@ -31,13 +33,17 @@ namespace Whisper
                 })
                 .AddIdentityCookies();
 
+            builder.Services.AddSingleton<ArangoDBService>();
+            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<WeaviateService>();
+
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            //builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                //.AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
