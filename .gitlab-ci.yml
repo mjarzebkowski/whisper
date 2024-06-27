@@ -12,19 +12,19 @@ before_script:
 
 build:
   stage: build
-  image: mcr.microsoft.com/dotnet/sdk:6.0
+  image: mcr.microsoft.com/dotnet/sdk:8.0
   script:
-    - cd src/Whisper
+    - cd src/BlazorApp
     - dotnet publish -c Release -o out
   artifacts:
     paths:
-      - src/Whisper/out
+      - src/BlazorApp/out
 
 test:
   stage: test
-  image: mcr.microsoft.com/dotnet/sdk:6.0
+  image: mcr.microsoft.com/dotnet/sdk:8.0
   script:
-    - cd src/Whisper
+    - cd src/BlazorApp
     - dotnet test
 
 deploy_test:
@@ -40,9 +40,9 @@ deploy_test:
     - python3 -m ensurepip
     - pip3 install --no-cache --upgrade pip setuptools
     - pip3 install awscli
-    - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     - export NVM_DIR="$HOME/.nvm"
-    - [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    - . "$NVM_DIR/nvm.sh"
     - nvm install 14
     - nvm use 14
     - npm install -g serverless
@@ -51,7 +51,7 @@ deploy_test:
   script:
     - terragrunt init
     - terragrunt apply -auto-approve
-    - ../../scripts/migrate.sh
+    - ../../scripts/migrate_arangodb.sh
   environment:
     name: test
     url: http://test.example.com
@@ -72,9 +72,9 @@ deploy_prod:
     - python3 -m ensurepip
     - pip3 install --no-cache --upgrade pip setuptools
     - pip3 install awscli
-    - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     - export NVM_DIR="$HOME/.nvm"
-    - [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    - . "$NVM_DIR/nvm.sh"
     - nvm install 14
     - nvm use 14
     - npm install -g serverless
@@ -83,7 +83,7 @@ deploy_prod:
   script:
     - terragrunt init
     - terragrunt apply -auto-approve
-    - ../../scripts/migrate.sh
+    - ../../scripts/migrate_arangodb.sh
   environment:
     name: prod
     url: http://prod.example.com
