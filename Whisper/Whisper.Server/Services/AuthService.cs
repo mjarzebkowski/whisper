@@ -1,17 +1,24 @@
-﻿using BCrypt.Net;
-using Core.Arango.Protocol;
-using System.Threading.Tasks;
-using Whisper.Data;
+﻿using Core.Arango;
+using Microsoft.EntityFrameworkCore;
+using Whisper.Shared.Data;
 
 namespace Whisper.Server.Services
 {
     public class AuthService
     {
         private readonly ArangoDBService _arangoDBService;
+        private readonly IArangoContext _context;
 
-        public AuthService(ArangoDBService arangoDBService)
+        public AuthService(ArangoDBService arangoDBService, IArangoContext context)
         {
             _arangoDBService = arangoDBService;
+            _context = context;
+        }
+
+        public async Task CreateDocumentAsync<T>(string collection, T document)
+        {
+            var database = _context.GetDatabase();
+            var result = await _context.CreateAsync(database, collection, document);
         }
 
         public async Task Register(ApplicationUser user)
@@ -32,6 +39,15 @@ namespace Whisper.Server.Services
 
             var user = users[0];
             return BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
+        }
+
+        public async Task QueryAsync()
+        {
+            var query = _context.Query<string>().FirstOrDefault();
+            if (query != null)
+            {
+                // handle query result
+            }
         }
     }
 }

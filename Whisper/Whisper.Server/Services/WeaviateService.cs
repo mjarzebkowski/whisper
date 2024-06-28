@@ -6,22 +6,16 @@ namespace Whisper.Server.Services
     {
         private readonly WeaviateClient _client;
 
-        public WeaviateService()
+        public WeaviateService(HttpClient httpClient)
         {
-            var config = new WeaviateCliententConfig
-            {
-                Scheme = "http",
-                Host = "localhost:8080"
-            };
-            _client = new WeaviateClient(config);
+            var config = new WeaviateClientConfig { BaseUrl = "your-base-url" };
+            _client = new WeaviateClient(config, httpClient);
         }
 
-        public async Task<List<WeaviateObject>> GetObjectsAsync()
+        public async Task<object> GetDataAsync()
         {
-            var result = await _client.Data.GetAsync();
-            return result.Objects;
+            var data = await _client.Data.GetAsync();
+            return data;
         }
-
-        // Dodaj inne metody do interakcji z Weaviate
     }
 }

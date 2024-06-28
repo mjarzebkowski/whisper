@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using Whisper.Data;
+using Whisper.Shared.Data;
 
 namespace Whisper.Components.Account
 {
