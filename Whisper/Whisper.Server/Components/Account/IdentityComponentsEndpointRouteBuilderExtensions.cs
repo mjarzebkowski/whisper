@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using System.Security.Claims;
 using System.Text.Json;
-using Whisper.Components.Account.Pages;
-using Whisper.Components.Account.Pages.Manage;
-using Whisper.Data;
+using Whisper.Server.Components.Account.Pages;
+using Whisper.Server.Components.Account.Pages.Manage;
+using Whisper.Shared.Data;
 
 namespace Microsoft.AspNetCore.Routing
 {

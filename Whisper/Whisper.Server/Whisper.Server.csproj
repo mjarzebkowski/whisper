@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Whisper.Shared\Whisper.Shared.csproj" />
     <ProjectReference Include="..\Whisper.Client\Whisper.Client.csproj" />
+    <ProjectReference Include="..\Whisper.Shared\Whisper.Shared.csproj" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Core.Arango" Version="3.11.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.6" />

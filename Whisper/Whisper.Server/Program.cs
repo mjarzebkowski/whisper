@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Whisper.Client.Pages;
-using Whisper.Components;
 using Whisper.Components.Account;
 using Whisper.Server.Components;
 using Whisper.Server.Services;
@@ -32,7 +30,7 @@ namespace Whisper
                     options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
                 })
                 .AddIdentityCookies();
-
+            builder.Services.AddSingleton<HttpClientService>();
             builder.Services.AddSingleton<ArangoDBService>();
             builder.Services.AddSingleton<AuthService>();
             builder.Services.AddSingleton<WeaviateService>();

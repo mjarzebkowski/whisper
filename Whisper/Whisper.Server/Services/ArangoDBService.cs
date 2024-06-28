@@ -1,6 +1,4 @@
 ﻿using Core.Arango;
-using Core.Arango.Protocol;
-using Microsoft.Extensions.Configuration;
 
 namespace Whisper.Server.Services
 {

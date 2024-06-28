@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Whisper.Data;
+using Whisper.Shared.Data;
 
 namespace Whisper.Components.Account
 {
